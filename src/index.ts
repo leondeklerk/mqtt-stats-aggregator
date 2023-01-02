@@ -2,6 +2,7 @@ import * as mqtt from "mqtt";
 import fs from "fs";
 import * as dotenv from "dotenv";
 import { CronJob } from "cron";
+import path from "path";
 dotenv.config();
 
 let client: mqtt.MqttClient | null = null;
@@ -39,7 +40,7 @@ function run() {
 	options.protocol = process.env?.MQTT_PROTOCOL;
 
 	if (process.env?.MQTT_CA_FILE) {
-		const CA = fs.readFileSync(`../config/${process.env.MQTT_CA_FILE}`);
+		const CA = fs.readFileSync(path.join(__dirname, `../config/${process.env.MQTT_CA_FILE}`));
 		options.ca = CA;
 	}
 
@@ -106,20 +107,20 @@ function onMessage(topic: string, message: Buffer) {
 }
 
 function writeToFile(fileName: string, content: string) {
-	fs.access(`../data/${fileName}`, fs.constants.F_OK, (err) => {
+	fs.access(path.join(__dirname, `../data/${fileName}`), fs.constants.F_OK, (err) => {
 		if (err) {
 			let header = "date,usage";
 			if (fileName === "fallback") {
 				header = "date,topic,usage";
 			}
 
-			fs.writeFile(`../data/${fileName}`, `${header}\n${content}\n`, (err) => {
+			fs.writeFile(path.join(__dirname, `../data/${fileName}`), `${header}\n${content}\n`, (err) => {
 				if (err) {
 					console.log("Write error:", err);
 				}
 			});
 		} else {
-			fs.appendFile(`../data/${fileName}`, `${content}\n`, (err) => {
+			fs.appendFile(path.join(__dirname, `../data/${fileName}`), `${content}\n`, (err) => {
 				if (err) {
 					console.log("Append error:", err);
 				}
