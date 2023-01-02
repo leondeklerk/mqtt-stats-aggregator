@@ -1,0 +1,49 @@
+{
+  "extends": [
+    "config:base",
+    ":rebaseStalePrs",
+    ":pinVersions"
+  ],
+  "labels": ["renovate"],
+  "rollbackPrs": true,
+  "dependencyDashboard": false,
+  "assignees": ["developer@leondeklerk.com"],
+  "configMigration": true,
+  "timezone": "Europe/Amsterdam",
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"],
+    "schedule": "at any time"
+  },
+  "docker": {
+    "enabled": false
+  },
+  "digest": {
+    "enabled": false
+  },
+  "packageRules": [
+    {
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "minor dependencies",
+      "groupSlug": "dependencies-minor",
+      "addLabels": ["minor"]
+    },
+    {
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "groupName": "major dependencies",
+      "groupSlug": "dependencies-major",
+      "addLabels": ["major"]
+    }
+  ]
+}
