@@ -1,34 +1,46 @@
 {
-    "name": "node-ts-template",
-    "version": "1.0.0",
-    "description": "Node typescript template",
-    "main": "index.ts",
-    "scripts": {
-        "lint": "eslint '*/**/*.{js,ts,tsx,json}' --fix",
-        "serve": "ts-node src/index.ts",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "tsc",
-        "start": "node dist/index.js"
-    },
-    "keywords": [],
-    "author": "Leon de Klerk",
-    "license": "ISC",
-    "dependencies": {
-        "typescript": "4.9.4"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/leondeklerk/node-ts-template"
-    },
-    "devDependencies": {
-        "ts-node": "10.9.1",
-        "@typescript-eslint/eslint-plugin": "5.47.1",
-        "@typescript-eslint/parser": "5.47.1",
-        "eslint": "8.31.0",
-        "eslint-config-prettier": "8.5.0",
-        "eslint-plugin-prettier": "4.2.1",
-        "nodemon": "2.0.20",
-        "prettier": "2.8.1",
-        "rimraf": "3.0.2"
-    }
+	"name": "mqtt-stats-aggregator",
+	"version": "1.0.0",
+	"description": "MQTT stats aggregator",
+	"main": "index.ts",
+	"scripts": {
+		"lint": "eslint --ext .ts,.js,.json --ignore-path .gitignore .",
+		"serve": "ts-node src/index.ts",
+		"build": "run-p type-check build-only",
+		"type-check": "tsc --noEmit",
+		"start": "node dist/index.js",
+		"prepare": "husky install",
+		"build-only": "tsc"
+	},
+	"keywords": [],
+	"author": "Leon de Klerk",
+	"license": "MIT",
+	"lint-staged": {
+		"*.{js,ts,vue}": "eslint --ext .ts,.js --max-warnings 0"
+	},
+	"dependencies": {
+		"cron": "^2.1.0",
+		"dotenv": "^16.0.3",
+		"mqtt": "^4.3.7"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/leondeklerk/mqtt-stats-aggregator"
+	},
+	"devDependencies": {
+		"@types/cron": "^2.0.0",
+		"@types/node": "^18.11.18",
+		"@types/ws": "^8.5.4",
+		"@typescript-eslint/eslint-plugin": "5.47.1",
+		"eslint": "8.31.0",
+		"eslint-config-prettier": "^8.6.0",
+		"eslint-plugin-prettier": "4.2.1",
+		"husky": "^8.0.2",
+		"lint-staged": "^13.1.0",
+		"nodemon": "^2.0.20",
+		"npm-run-all": "^4.1.5",
+		"prettier": "2.8.1",
+		"ts-node": "10.9.1",
+		"typescript": "4.9.4"
+	}
 }

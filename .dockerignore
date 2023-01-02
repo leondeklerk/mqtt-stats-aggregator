@@ -2,3 +2,15 @@ node_modules
 npm-debug.log
 .github
 .env
+.vscode
+.husky
+dist
+.eslintignore
+.eslintrc
+.markdownlint.json
+.prettierrc
+.Dockerfile
+*.pem
+.editorconfig
+data/**
+config/**
