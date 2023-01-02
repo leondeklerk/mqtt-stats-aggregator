@@ -15,4 +15,6 @@ COPY package-lock.json ./
 RUN npm pkg delete scripts.prepare
 RUN npm ci
 COPY --from=0 /app/dist .
+RUN mkdir /data
+RUN mkdir /config
 CMD ["node", "index.js"]
