@@ -32,4 +32,4 @@ jobs:
               with:
                   context: .
                   push: false
-                  platforms: "amd64,arm64v8,arm32v7"
+                  platforms: "amd64,arm64,arm/v7"
