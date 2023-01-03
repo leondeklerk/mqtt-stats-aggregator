@@ -9,7 +9,7 @@ let client: mqtt.MqttClient | null = null;
 let pending: string[] = [];
 
 new CronJob(
-	"00 */10 * * * *",
+	"00 00 00 * * *",
 	() => {
 		pending = [];
 		if (client !== null) {

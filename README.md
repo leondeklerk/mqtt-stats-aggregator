@@ -28,5 +28,5 @@ MQTT_TZ="Europe/Amsterdam"
 
 Each device defined via the `MQTT_TOPICS` variable will create its own file where data is stored. For example, a device with the topic `device1` will create a `device1` file. If a response is received containing a topic that is not configured, it will be placed in a file called `fallback`. The CSV format of this file is `date,topic,usage`.
 
-The files are stored in the `data` folder (`/app/data` binding with Docker).
-The optional CA file must be placed in the `config` folder (`/app/config` binding with Docker)
+The files are stored in the `data` folder (`/data` binding with Docker).
+The optional CA file must be placed in the `config` folder (`/config` binding with Docker)
