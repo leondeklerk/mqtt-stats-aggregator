@@ -4,7 +4,7 @@ COPY package.json ./
 COPY package-lock.json ./
 RUN npm ci --ignore-scripts
 COPY . .
-RUN npm run build
+RUN npm run build-only
 
 FROM node:19-alpine as stage
 WORKDIR /app
