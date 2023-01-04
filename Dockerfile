@@ -9,8 +9,8 @@ RUN npm run build-only
 FROM node:19-alpine as stage
 WORKDIR /app
 ENV NODE_ENV=production
-COPY --from=build /build/dist ./app
-COPY --from=build /build/node_modules ./app
+COPY --from=build /build/dist .
+COPY --from=build /build/node_modules ./node_modules
 RUN mkdir /data
 RUN mkdir /config
 CMD ["node", "index.js"]
