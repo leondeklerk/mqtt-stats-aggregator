@@ -10,9 +10,7 @@ FROM node:19-alpine as stage
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --from=build /build/dist ./app
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm ci --omit=dev --ignore-scripts
+COPY --from=build /build/node_modules ./app
 RUN mkdir /data
 RUN mkdir /config
 CMD ["node", "index.js"]
