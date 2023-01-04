@@ -1,20 +1,20 @@
-FROM node:19-alpine
-WORKDIR /app
+FROM --platform=$BUILDPLATFORM node:19-alpine AS build
+WORKDIR /build
+ENV HUSKY=0
 COPY package.json ./
 COPY package-lock.json ./
-RUN npm pkg delete scripts.prepare
 RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM node:19-alpine
+FROM node:19-alpine as stage
 WORKDIR /app
 ENV NODE_ENV=production
+ENV HUSKY=0
+COPY --from=build /build/dist ./app
 COPY package.json ./
 COPY package-lock.json ./
-RUN npm pkg delete scripts.prepare
-RUN npm ci
-COPY --from=0 /app/dist .
+RUN npm ci --omit=dev
 RUN mkdir /data
 RUN mkdir /config
 CMD ["node", "index.js"]
