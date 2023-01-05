@@ -4,7 +4,6 @@ npm-debug.log
 .env
 .vscode
 .husky
-dist
 .eslintignore
 .eslintrc
 .markdownlint.json
