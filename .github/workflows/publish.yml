@@ -38,8 +38,6 @@ jobs:
 
             - name: Set up Docker Buildx
               uses: docker/setup-buildx-action@v2
-              with:
-                  buildkitd-flags: --debug
 
             - name: Download build files
               uses: actions/download-artifact@v3
@@ -59,4 +57,4 @@ jobs:
                   context: .
                   push: true
                   tags: leondeklerk/mqtt-stats-aggregator:latest,leondeklerk/mqtt-stats-aggregator:${{ github.SHA }}
-                  platforms: "linux/amd64,linux/arm64,linux/arm/v7"
+                  platforms: "linux/arm/v7"
