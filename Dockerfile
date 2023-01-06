@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:18-alpine
 RUN set -eux; apk add --no-cache curl;
 WORKDIR /app
 ENV NODE_ENV=production
