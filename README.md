@@ -3,7 +3,7 @@
 Runs a daily function to retrieve statistics for configured Tasmota MQTT devices and stores these.
 Mainly intended to gain insight into daily energy usage, but does not have any data processing/graphing yet.
 
-It pulls the data from all configured devices at midnight every day. The data is written to files in CSV format `date,usage` where both values point to the day before (e.g. on 1/1/2023 it gets the data of 31/12/2022). After a response has been received for each configured topic, the client will disconnect until the next polling moment.
+It pulls the data from all configured devices at 0:30 every day. The data is written to files in CSV format `date,usage` where both values point to the day before (e.g. on 1/1/2023 it gets the data of 31/12/2022). After a response has been received for each configured topic, the client will disconnect until the next polling moment.
 
 ## Environment variables
 
