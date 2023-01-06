@@ -1,4 +1,5 @@
 FROM node:alpine
+RUN set -eux; apk add --no-cache curl;
 WORKDIR /app
 ENV NODE_ENV=production
 COPY package.json ./
