@@ -6,6 +6,7 @@ COPY package.json ./
 COPY package-lock.json ./
 COPY dist ./
 COPY scripts ./scripts/
+RUN npm -v
 RUN npm i
 RUN mkdir /data
 RUN mkdir /config
