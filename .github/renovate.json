@@ -11,9 +11,6 @@
 		"labels": ["security"],
 		"schedule": "at any time"
 	},
-	"docker": {
-		"enabled": false
-	},
 	"digest": {
 		"enabled": false
 	},

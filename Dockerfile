@@ -1,4 +1,6 @@
 FROM node:lts-alpine
+RUN apk add --no-cache tzdata
+ENV TZ=Europe/Amsterdam
 WORKDIR /app
 ENV NODE_ENV=production
 COPY package.json ./

@@ -5,7 +5,7 @@
 	"main": "index.ts",
 	"scripts": {
 		"lint": "eslint --ext .ts,.js,.json --ignore-path .gitignore .",
-		"dev": "tsc-watch --noClear -p tsconfig.json --onSuccess \"node ./dist/index.js\"",
+		"dev": "tsc-watch -p . --onSuccess \"node ./dist/index.js\"",
 		"build": "run-p type-check build-only",
 		"type-check": "tsc --noEmit",
 		"start": "node dist/index.js",
@@ -16,7 +16,7 @@
 	"author": "Leon de Klerk",
 	"license": "MIT",
 	"lint-staged": {
-		"*.{js,ts,vue}": "eslint --ext .ts,.js --max-warnings 0"
+		"*.{js,ts}": "eslint --ext .ts,.js --max-warnings 0"
 	},
 	"dependencies": {
 		"cron": "2.1.0",

@@ -57,6 +57,7 @@ function run() {
 		for (const topic of topics) {
 			pending.push(topic);
 			client.subscribe(`stat/${topic}/RESULT`);
+			console.info(new Date().toDateString(), "-", "Published to:", topic);
 			client.publish(`cmnd/${topic}/EnergyYesterday`, "");
 		}
 	});
@@ -72,6 +73,7 @@ function run() {
 }
 
 function onMessage(topic: string, message: Buffer) {
+	console.info(new Date().toDateString(), "-", "Received from:", topic);
 	const parts = topic.split("/");
 	// Only parse statistic messages
 	if (parts[0] === "stat") {
@@ -81,6 +83,7 @@ function onMessage(topic: string, message: Buffer) {
 
 		// Get the necessary device data
 		if (data["EnergyYesterday"] && data["EnergyYesterday"]["Yesterday"]) {
+			console.info(new Date().toDateString(), "-", "Parsed:", topic);
 			// Actual usage of the previous day
 			const usage = data["EnergyYesterday"]["Yesterday"];
 
