@@ -82,22 +82,25 @@ function onMessage(topic: string, message: Buffer) {
 		const data = JSON.parse(message.toString());
 
 		// Get the necessary device data
-		if (data["EnergyYesterday"] && data["EnergyYesterday"]["Yesterday"]) {
-			console.info(new Date().toDateString(), "-", "Parsed:", topic);
+		if (data["EnergyYesterday"]) {
 			// Actual usage of the previous day
 			const usage = data["EnergyYesterday"]["Yesterday"];
 
-			// Format date to string: YYYY-MM-DD
-			const date = new Date();
-			date.setDate(date.getDate() - 1);
-			const month = (date.getMonth() + 1).toString().padStart(2, "0");
-			const day = date.getDate().toString().padStart(2, "0");
-			const dateString = `${date.getFullYear()}-${month}-${day}`;
+			if (usage !== null && usage !== undefined && usage !== "") {
+				console.info(new Date().toDateString(), "-", "Parsed:", topic, usage);
 
-			if (device === "fallback") {
-				writeToFile(device, `${dateString},${topic},${usage}`);
-			} else {
-				writeToFile(device, `${dateString},${usage}`);
+				// Format date to string: YYYY-MM-DD
+				const date = new Date();
+				date.setDate(date.getDate() - 1);
+				const month = (date.getMonth() + 1).toString().padStart(2, "0");
+				const day = date.getDate().toString().padStart(2, "0");
+				const dateString = `${date.getFullYear()}-${month}-${day}`;
+
+				if (device === "fallback") {
+					writeToFile(device, `${dateString},${topic},${usage}`);
+				} else {
+					writeToFile(device, `${dateString},${usage}`);
+				}
 			}
 		}
 		pending = pending.filter((value) => value !== device);
