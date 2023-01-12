@@ -13,6 +13,7 @@ new CronJob(
 	() => {
 		pending = [];
 		if (client !== null) {
+			console.info(new Date().toString(), "- Closing dangling client");
 			client.end(undefined, undefined, () => {
 				client = run();
 			});
@@ -26,6 +27,7 @@ new CronJob(
 );
 
 function run() {
+	console.info(new Date().toString(), "- Started a run");
 	// Create the connection options
 	const options = {
 		rejectUnauthorized: true,
@@ -57,7 +59,7 @@ function run() {
 		for (const topic of topics) {
 			pending.push(topic);
 			client.subscribe(`stat/${topic}/RESULT`);
-			console.info(new Date().toDateString(), "-", "Published to:", topic);
+			console.info(new Date().toString(), "-", "Published to:", topic);
 			client.publish(`cmnd/${topic}/EnergyYesterday`, "");
 		}
 	});
@@ -65,15 +67,13 @@ function run() {
 	client.on("message", onMessage);
 
 	client.on("error", (error) => {
-		if (error) {
-			console.log("Client error", error);
-		}
+		console.log(new Date().toString(), "- Client error", error);
 	});
 	return client;
 }
 
 function onMessage(topic: string, message: Buffer) {
-	console.info(new Date().toDateString(), "-", "Received from:", topic);
+	console.info(new Date().toString(), "-", "Received from:", topic);
 	const parts = topic.split("/");
 	// Only parse statistic messages
 	if (parts[0] === "stat") {
@@ -87,7 +87,7 @@ function onMessage(topic: string, message: Buffer) {
 			const usage = data["EnergyYesterday"]["Yesterday"];
 
 			if (usage !== null && usage !== undefined && usage !== "") {
-				console.info(new Date().toDateString(), "-", "Parsed:", topic, usage);
+				console.info(new Date().toString(), "-", "Parsed:", topic, usage);
 
 				// Format date to string: YYYY-MM-DD
 				const date = new Date();
