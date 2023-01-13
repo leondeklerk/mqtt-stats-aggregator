@@ -9,12 +9,13 @@ let client: mqtt.MqttClient | null = null;
 let pending: string[] = [];
 
 new CronJob(
-	"00 30 00 * * *",
+	process.env?.CRON_TEMPLATE || "00 30 00 * * *",
 	() => {
 		pending = [];
-		if (client !== null) {
+		if (client !== null && client.connected) {
 			console.info(new Date().toString(), "- Closing dangling client");
-			client.end(undefined, undefined, () => {
+			client.end(true, undefined, () => {
+				console.log(new Date().toString(), "- Closed client");
 				client = run();
 			});
 		} else {
