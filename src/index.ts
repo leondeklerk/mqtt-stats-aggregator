@@ -14,10 +14,13 @@ new CronJob(
 		pending = [];
 		if (client !== null && client.connected) {
 			console.info(new Date().toString(), "- Closing dangling client");
-			client.end(true, undefined, () => {
+
+			client.on("end", () => {
 				console.log(new Date().toString(), "- Closed client");
 				client = run();
 			});
+
+			client.end(true);
 		} else {
 			client = run();
 		}
