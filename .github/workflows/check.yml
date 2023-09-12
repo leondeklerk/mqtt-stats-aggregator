@@ -9,7 +9,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - uses: actions/setup-node@v3
               with:
                   node-version: "19.x"
@@ -31,13 +31,13 @@ jobs:
         timeout-minutes: 15
         steps:
             - name: Check out repo
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Set up QEMU
-              uses: docker/setup-qemu-action@v2
+              uses: docker/setup-qemu-action@v3
 
             - name: Set up Docker Buildx
-              uses: docker/setup-buildx-action@v2
+              uses: docker/setup-buildx-action@v3
 
             - name: Download build files
               uses: actions/download-artifact@v3
@@ -46,7 +46,7 @@ jobs:
                   path: dist
 
             - name: Build image
-              uses: docker/build-push-action@v4
+              uses: docker/build-push-action@v5
               with:
                   context: .
                   push: false
