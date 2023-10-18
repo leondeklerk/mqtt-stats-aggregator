@@ -19,7 +19,7 @@
 		"*.{js,ts}": "eslint --ext .ts,.js --max-warnings 0"
 	},
 	"dependencies": {
-		"cron": "2.4.4",
+		"cron": "3.1.1",
 		"dotenv": "16.3.1",
 		"mqtt": "5.1.2"
 	},
@@ -35,7 +35,7 @@
 		"eslint": "8.51.0",
 		"eslint-config-prettier": "9.0.0",
 		"husky": "8.0.3",
-		"lint-staged": "14.0.1",
+		"lint-staged": "15.0.1",
 		"prettier": "3.0.3",
 		"tsc-watch": "6.0.4",
 		"typescript": "5.2.2"
