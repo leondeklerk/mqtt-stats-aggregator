@@ -1,5 +1,4 @@
 FROM node:lts
-RUN apk add --no-cache tzdata
 ENV TZ=Europe/Amsterdam
 WORKDIR /app
 ENV NODE_ENV=production
