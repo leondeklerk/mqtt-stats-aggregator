@@ -20,7 +20,7 @@ jobs:
             - name: Build project
               run: npm run build
             - name: Upload build files
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: build-files
                   path: dist/
@@ -40,7 +40,7 @@ jobs:
               uses: docker/setup-buildx-action@v3
 
             - name: Download build files
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v4
               with:
                   name: build-files
                   path: dist
