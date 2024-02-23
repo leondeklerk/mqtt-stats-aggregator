@@ -4,12 +4,13 @@
 	"description": "MQTT stats aggregator",
 	"main": "index.ts",
 	"scripts": {
-		"lint": "eslint --ext .ts,.js,.json --ignore-path .gitignore .",
+		"lint": "eslint --ext .ts,.js,.json .",
+		"lint:fix": "eslint --ext .ts,.js,.json --fix .",
 		"dev": "tsc-watch -p . --onSuccess \"node ./dist/index.js\"",
 		"build": "npm run type-check && npm run build-only",
 		"type-check": "tsc --noEmit",
 		"start": "node dist/index.js",
-		"prepare": "node ./scripts/prepare.js",
+		"prepare": "husky",
 		"build-only": "tsc"
 	},
 	"keywords": [],
@@ -28,13 +29,12 @@
 		"url": "git://github.com/leondeklerk/mqtt-stats-aggregator"
 	},
 	"devDependencies": {
-		"@types/cron": "2.0.1",
 		"@types/node": "20.11.20",
 		"@types/ws": "8.5.10",
-		"@typescript-eslint/eslint-plugin": "6.21.0",
+		"@typescript-eslint/eslint-plugin": "^7.0.2",
 		"eslint": "8.56.0",
 		"eslint-config-prettier": "9.1.0",
-		"husky": "8.0.3",
+		"husky": "^9.0.11",
 		"lint-staged": "15.2.2",
 		"prettier": "3.2.5",
 		"tsc-watch": "6.0.4",
