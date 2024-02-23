@@ -1,9 +1,0 @@
-{
-	"$schema": "https://json.schemastore.org/prettierrc",
-	"semi": true,
-	"arrow-parens": "always",
-	"jsxBracketSameLine": true,
-	"htmlWhitespaceSensitivity": "ignore",
-	"printWidth": 150,
-	"endOfLine": "auto"
-}

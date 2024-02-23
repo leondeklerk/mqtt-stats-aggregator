@@ -1,8 +1,8 @@
-import * as mqtt from "mqtt";
 import fs from "fs";
-import * as dotenv from "dotenv";
-import { CronJob } from "cron";
 import path from "path";
+import { CronJob } from "cron";
+import * as dotenv from "dotenv";
+import * as mqtt from "mqtt";
 dotenv.config();
 
 let client: mqtt.MqttClient | null = null;
@@ -12,7 +12,7 @@ new CronJob(
 	process.env?.CRON_TEMPLATE || "00 30 00 * * *",
 	() => {
 		pending = [];
-		if (client !== null && client.connected) {
+		if (client?.connected) {
 			console.info(new Date().toString(), "- Closing dangling client");
 
 			client.on("end", () => {
@@ -27,7 +27,7 @@ new CronJob(
 	},
 	null,
 	true,
-	process.env?.MQTT_TZ || "Europe/Amsterdam"
+	process.env?.MQTT_TZ || "Europe/Amsterdam",
 );
 
 function run() {
@@ -86,9 +86,9 @@ function onMessage(topic: string, message: Buffer) {
 		const data = JSON.parse(message.toString());
 
 		// Get the necessary device data
-		if (data["EnergyYesterday"]) {
+		if (data.EnergyYesterday) {
 			// Actual usage of the previous day
-			const usage = data["EnergyYesterday"]["Yesterday"];
+			const usage = data.EnergyYesterday.Yesterday;
 
 			if (usage !== null && usage !== undefined && usage !== "") {
 				console.info(new Date().toString(), "-", "Parsed:", topic, usage);

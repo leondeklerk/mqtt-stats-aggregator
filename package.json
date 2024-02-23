@@ -4,8 +4,8 @@
 	"description": "MQTT stats aggregator",
 	"main": "index.ts",
 	"scripts": {
-		"lint": "eslint --ext .ts,.js,.json .",
-		"lint:fix": "eslint --ext .ts,.js,.json --fix .",
+		"check": "npx @biomejs/biome check .",
+		"check:fix": "npx @biomejs/biome check --apply .",
 		"dev": "tsc-watch -p . --onSuccess \"node ./dist/index.js\"",
 		"build": "npm run type-check && npm run build-only",
 		"type-check": "tsc --noEmit",
@@ -17,9 +17,10 @@
 	"author": "Leon de Klerk",
 	"license": "MIT",
 	"lint-staged": {
-		"*.{js,ts}": "eslint --ext .ts,.js --max-warnings 0"
+		"*": "biome check --no-errors-on-unmatched"
 	},
 	"dependencies": {
+		"@biomejs/biome": "^1.5.3",
 		"cron": "3.1.6",
 		"dotenv": "16.4.5",
 		"mqtt": "5.3.5"
@@ -31,12 +32,8 @@
 	"devDependencies": {
 		"@types/node": "20.11.20",
 		"@types/ws": "8.5.10",
-		"@typescript-eslint/eslint-plugin": "7.0.2",
-		"eslint": "8.56.0",
-		"eslint-config-prettier": "9.1.0",
 		"husky": "9.0.11",
 		"lint-staged": "15.2.2",
-		"prettier": "3.2.5",
 		"tsc-watch": "6.0.4",
 		"typescript": "5.3.3"
 	}
