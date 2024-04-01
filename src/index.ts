@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import { CronJob } from "cron";
 import * as dotenv from "dotenv";
 import * as mqtt from "mqtt";
@@ -38,7 +38,7 @@ function run() {
 	} as mqtt.IClientOptions;
 
 	options.host = process.env?.MQTT_HOST || "localhost";
-	options.port = parseInt(process.env?.MQTT_PORT || "1883");
+	options.port = Number.parseInt(process.env?.MQTT_PORT || "1883");
 
 	// Ignore as we don't do any checks on the protocol value.
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
