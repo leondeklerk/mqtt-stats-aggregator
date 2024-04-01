@@ -4,14 +4,14 @@
 	"description": "MQTT stats aggregator",
 	"main": "index.ts",
 	"scripts": {
-		"check": "npx @biomejs/biome check .",
-		"check:fix": "npx @biomejs/biome check --apply .",
-		"dev": "tsc-watch -p . --onSuccess \"node ./dist/index.js\"",
-		"build": "npm run type-check && npm run build-only",
-		"type-check": "tsc --noEmit",
-		"start": "node dist/index.js",
-		"prepare": "node scripts/install.mjs",
-		"build-only": "tsc"
+		"check": "bunx @biomejs/biome check .",
+		"check:fix": "bunx @biomejs/biome check --apply .",
+		"dev": "bun --watch run index.ts",
+		"build": "bun run type-check && bun run build-only",
+		"type-check": "tsc --noEmit -p tsconfig.json",
+		"start": "bun run dist/index.js",
+		"prepare": "bun run scripts/install.mjs",
+		"build-only": "bun build index.ts --outdir dist --target bun"
 	},
 	"keywords": [],
 	"author": "Leon de Klerk",
@@ -30,7 +30,7 @@
 		"url": "git://github.com/leondeklerk/mqtt-stats-aggregator"
 	},
 	"devDependencies": {
-		"@types/node": "20.11.20",
+		"@types/bun": "1.0.12",
 		"@types/ws": "8.5.10",
 		"husky": "9.0.11",
 		"lint-staged": "15.2.2",
