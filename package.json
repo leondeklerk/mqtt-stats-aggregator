@@ -11,7 +11,7 @@
 		"type-check": "tsc --noEmit -p tsconfig.json",
 		"start": "bun run dist/index.js",
 		"prepare": "bun run scripts/install.mjs",
-		"build-only": "bun build index.ts --outdir dist --target bun"
+		"build-only": "bunx --bun tsc"
 	},
 	"keywords": [],
 	"author": "Leon de Klerk",
