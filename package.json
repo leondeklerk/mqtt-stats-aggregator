@@ -6,7 +6,7 @@
 	"scripts": {
 		"check": "bunx @biomejs/biome check .",
 		"check:fix": "bunx @biomejs/biome check --apply .",
-		"dev": "bun --watch run index.ts",
+		"dev": "bun --watch run src/index.ts",
 		"build": "bun run type-check && bun run build-only",
 		"type-check": "tsc --noEmit -p tsconfig.json",
 		"start": "bun run dist/index.js",

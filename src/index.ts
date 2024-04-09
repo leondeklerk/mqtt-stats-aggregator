@@ -34,7 +34,7 @@ function run() {
 	console.info(new Date().toString(), "- Started a run");
 	// Create the connection options
 	const options = {
-		rejectUnauthorized: true,
+		rejectUnauthorized: false,
 	} as mqtt.IClientOptions;
 
 	options.host = process.env?.MQTT_HOST || "localhost";
