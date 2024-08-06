@@ -1,14 +1,24 @@
 {
-	"extends": ["config:recommended", ":rebaseStalePrs", ":pinVersions"],
-	"labels": ["renovate"],
+	"extends": [
+		"config:recommended",
+		":rebaseStalePrs",
+		":pinVersions"
+	],
+	"labels": [
+		"renovate"
+	],
 	"rollbackPrs": true,
 	"dependencyDashboard": false,
-	"assignees": ["developer@leondeklerk.com"],
+	"assignees": [
+		"developer@leondeklerk.com"
+	],
 	"configMigration": true,
 	"timezone": "Europe/Amsterdam",
 	"vulnerabilityAlerts": {
 		"enabled": true,
-		"labels": ["security"],
+		"labels": [
+			"security"
+		],
 		"schedule": "at any time"
 	},
 	"digest": {
@@ -16,18 +26,31 @@
 	},
 	"packageRules": [
 		{
-			"matchPackagePatterns": ["*"],
-			"matchUpdateTypes": ["minor", "patch"],
+			"matchUpdateTypes": [
+				"minor",
+				"patch"
+			],
 			"groupName": "minor dependencies",
 			"groupSlug": "dependencies-minor",
-			"addLabels": ["minor"]
+			"addLabels": [
+				"minor"
+			],
+			"matchPackageNames": [
+				"*"
+			]
 		},
 		{
-			"matchPackagePatterns": ["*"],
-			"matchUpdateTypes": ["major"],
+			"matchUpdateTypes": [
+				"major"
+			],
 			"groupName": "major dependencies",
 			"groupSlug": "dependencies-major",
-			"addLabels": ["major"]
+			"addLabels": [
+				"major"
+			],
+			"matchPackageNames": [
+				"*"
+			]
 		}
 	]
 }
