@@ -20,7 +20,7 @@
 		"*": "biome check --no-errors-on-unmatched"
 	},
 	"dependencies": {
-		"cron": "3.5.0",
+		"cron": "4.0.0",
 		"dotenv": "16.4.7",
 		"mqtt": "5.10.3"
 	},
