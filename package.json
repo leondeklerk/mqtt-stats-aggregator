@@ -22,7 +22,7 @@
 	"dependencies": {
 		"cron": "3.5.0",
 		"dotenv": "16.4.7",
-		"mqtt": "5.10.3"
+		"mqtt": "5.10.4"
 	},
 	"repository": {
 		"type": "git",
@@ -30,9 +30,9 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@types/bun": "1.2.2",
+		"@types/bun": "1.2.5",
 		"husky": "9.1.7",
-		"lint-staged": "15.4.3",
-		"typescript": "5.7.3"
+		"lint-staged": "15.5.0",
+		"typescript": "5.8.2"
 	}
 }
